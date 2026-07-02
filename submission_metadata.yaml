@@ -15,7 +15,7 @@ team_members:
     role: "python engineer"
 
 github_repo: "https://github.com/Harsha2134/Compiled-Minds"
-sandbox_link: "https://github.com/Harsha2134/Compiled-Minds"  # Demo and reproduction instructions in README
+sandbox_link: "https://compiled-minds-redrob.streamlit.app/"  # Demo and reproduction instructions in README
 
 reproduce_command: "python ranking_pipeline.py --candidates ./candidates.jsonl --out ./submission.csv"
 
