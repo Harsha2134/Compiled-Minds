@@ -1,0 +1,49 @@
+# Redrob Hackathon — Submission Metadata
+team_name: "Compiled Minds"
+
+primary_contact:
+  name: "P.SAI HARSHA"
+  email: "saiharsha2135@gmail.com"
+  phone: "+91-9182362574"
+
+team_members:
+  - name: "Devi Sri Yerabeti"
+    email: "yerabatidevisri@gmail.com"
+    role: "ML Engineer"
+  - name: "pranathi poosa"
+    email: "poosa.pranathi06@gmail.com"
+    role: "python engineer"
+
+github_repo: "https://github.com/Harsha2134/Compiled-Minds"
+sandbox_link: "https://github.com/Harsha2134/Compiled-Minds"  # Demo and reproduction instructions in README
+
+reproduce_command: "python ranking_pipeline.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+compute:
+  platform: "Windows CPU Instance"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11.0"
+  os: "Windows"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Gemini"
+  - "Claude"
+  - "Perplexity"
+
+ai_usage_summary: |
+  Used Antigravity CLI (powered by Gemini) for codebase research, performance profiling, and Layer 3/4 design and integration. No candidate data was sent to any LLM APIs during pipeline execution.
+
+methodology_summary: |
+  Three-stage hybrid pipeline: Layer 1 uses streaming generators and a bounded min-heap (capped at 1,500 candidates) with strict location commute hub allowances (Pune, Mumbai, Hyderabad, Delhi NCR, Noida), temporal future signup honeypot excluders, and career filtering. Layer 2 applies dynamic INT8 quantized offline SentenceTransformer (MiniLM) semantic scoring with YOE fits and hopping/closed-source penalties. Layer 3 calibrates relevance via a continuous trust score evaluating 13 metadata anomalies (e.g. cheat proxy, connection farming, bot responders). Layer 4 generates deterministic reasons and alerts.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

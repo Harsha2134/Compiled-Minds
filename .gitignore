@@ -1,0 +1,22 @@
+# Challenge raw data (large zip/jsonl files)
+[PUB] India_runs_data_and_ai_challenge/
+__MACOSX/
+
+# Python Virtual Environment
+.venv/
+
+# Caches
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Scratch & Temporary files
+scratch/
+sample_z_submission.csv
+z.download_model.py
+z.Ranking.py
+
+# IDE settings
+.vscode/
+.idea/
