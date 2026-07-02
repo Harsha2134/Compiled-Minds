@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compiled Minds — India.Runs Presentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent: #38BDF8;
+      --accent-rgb: 56, 189, 248;
+      --accent-alt: #10B981;
+      --card-bg: rgba(30, 41, 59, 0.7);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #090D16;
+      color: var(--text-main);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    .slide {
+      width: 297mm;
+      height: 210mm;
+      padding: 20mm;
+      background: var(--bg-gradient);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-bottom: 2px solid #334155;
+    }
+    
+    /* Presentation Footer */
+    .slide-footer {
+      position: absolute;
+      bottom: 8mm;
+      left: 20mm;
+      right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 3mm;
+    }
+    
+    .logo-footer {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-main);
+    }
+    .logo-footer span {
+      color: var(--accent);
+    }
+    
+    /* Header styling */
+    .slide-header {
+      margin-bottom: 8mm;
+    }
+    
+    .slide-header h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .slide-header .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 1mm;
+    }
+    
+    /* Content Columns */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10mm;
+      flex-grow: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6mm;
+      flex-grow: 1;
+    }
+    
+    /* Card / Content Blocks */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 6mm;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      color: var(--text-main);
+      margin-bottom: 4mm;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2mm;
+      display: inline-block;
+    }
+    
+    ul {
+      list-style-type: none;
+    }
+    
+    li {
+      margin-bottom: 3.5mm;
+      font-size: 14px;
+      line-height: 1.5;
+      position: relative;
+      padding-left: 5mm;
+    }
+    
+    li::before {
+      content: "✦";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    /* Slide Specific Layouts */
+    /* Slide 1: Cover */
+    .slide-cover {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .cover-tag {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--accent);
+      padding: 2mm 6mm;
+      border-radius: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6mm;
+    }
+    
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 2mm;
+      letter-spacing: -1px;
+    }
+    
+    .cover-title span {
+      background: linear-gradient(to right, #38BDF8, #10B981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .cover-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 12mm;
+      max-width: 180mm;
+      line-height: 1.6;
+    }
+    
+    .meta-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 6mm 12mm;
+      display: flex;
+      gap: 15mm;
+      justify-content: center;
+      text-align: left;
+    }
+    
+    .meta-item .label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .meta-item .val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 1mm;
+    }
+
+    /* Workflow Diagram styling */
+    .flow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10mm;
+      position: relative;
+    }
+
+    .flow-step {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6mm 4mm;
+      border-radius: 12px;
+      text-align: center;
+      width: 50mm;
+      z-index: 2;
+    }
+
+    .flow-step .step-num {
+      background: var(--accent);
+      color: #0F172A;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 3mm;
+    }
+
+    .flow-step h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      margin-bottom: 2mm;
+    }
+
+    .flow-step p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .flow-arrow {
+      font-size: 24px;
+      color: var(--accent);
+      font-weight: bold;
+      z-index: 1;
+    }
+    
+    /* Performance Metrics Styling */
+    .metric-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.5) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 8mm;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .metric-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 2mm;
+    }
+
+    .metric-val span {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .metric-label {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2mm;
+    }
+
+    .metric-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    
+    /* Highlight elements */
+    .hl-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      background: rgba(56, 189, 248, 0.15);
+      border-radius: 4px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    /* Print Break Rules */
+    @media print {
+      body {
+        background: none;
+      }
+      .slide {
+        page-break-after: always;
+        break-after: page;
+        border-bottom: none;
+        width: 297mm;
+        height: 210mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1: Cover -->
+  <div class="slide slide-cover">
+    <div class="cover-tag">redrob | H2S India.Runs</div>
+    <h1 class="cover-title">INTELLIGENT CANDIDATE<br><span>DISCOVERY & RANKING</span></h1>
+    <p class="cover-subtitle">A decoupled 4-stage hybrid ranking pipeline optimized for high-factual recall, geocoded NCR commuter rules, and multi-anomaly behavioral spam calibration.</p>
+    
+    <div class="meta-box">
+      <div class="meta-item">
+        <div class="label">Team Name</div>
+        <div class="val">Compiled Minds</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Team Leader</div>
+        <div class="val">P.SAI HARSHA</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Problem Statement</div>
+        <div class="val">Intelligent Discovery & Matching</div>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 1 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 2: Solution Overview -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Solution Overview</h2>
+      <div class="subtitle">Decoupled Architecture Built for Performance, Recall, and System Credibility</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Proposed Solution</h3>
+        <ul>
+          <li><strong>Decoupled 4-Stage Architecture</strong>: Segregates cheap hard filters from expensive semantic embedding vector computations.</li>
+          <li><strong>Layer 1 (Coarse Filter)</strong>: Streams data in memory-efficient chunks with a bounded min-heap capped at 1,500 candidates.</li>
+          <li><strong>Layer 2 (Semantic Matching)</strong>: Runs offline, dynamic INT8-quantized MiniLM transformer similarity models.</li>
+          <li><strong>Layer 3 (Trust Calibration)</strong>: Continuous trust scoring derived from 13 metadata checks (Easy-Apply spam, farming).</li>
+          <li><strong>Layer 4 (Deterministic Reasons)</strong>: Non-LLM reason generator ensuring zero hallucination.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Approach Differentiators</h3>
+        <ul>
+          <li><strong>OOM-Safe Design</strong>: Throughput bounds under <span class="hl-badge">568 MB RAM</span>, enabling safe processing of 100K pools on standard CPU instances.</li>
+          <li><strong>Trap & Honeypot Resistant</strong>: Explicit filters for chronological date impossibilities and profile anomalies (0% honeypot rate in top 100).</li>
+          <li><strong>Bypass Services Filter</strong>: Intelligently retains candidates at IT services firms who have prior product-company experience.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 2 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 3: JD Understanding & Candidate Evaluation -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>JD Understanding & Candidate Evaluation</h2>
+      <div class="subtitle">Extracting Real Professional Intent Over Simple Buzzword Matching</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Key JD Requirements Extracted</h3>
+        <ul>
+          <li><strong>Core Skills</strong>: Embeddings, dense retrieval, vector search (Pinecone/Weaviate/FAISS/Milvus), hybrid indexing, IR metrics (NDCG, MAP, MRR).</li>
+          <li><strong>Professional Experience</strong>: Ideal sweet-spot of 5–9 Years of Experience (YOE) at product-oriented tech companies.</li>
+          <li><strong>Commuting Hub Proximity</strong>: Relocation or location checks matching Noida, Pune, Mumbai, Hyderabad, Delhi NCR.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Evaluation Beyond Keywords</h3>
+        <ul>
+          <li><strong>Haversine Proximity Check</strong>: Maps locations to coordinates and permits a 100km commuting radius for flexible NCR hubs.</li>
+          <li><strong>Career Stability Evaluation</strong>: Evaluates chronological durations, job hoppers, and penalizes flat titles lacking growth.</li>
+          <li><strong>Availability Calibration</strong>: Prioritizes active candidates; down-weights profiles with no logins and low response rates.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 3 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Ranking Methodology -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Ranking Methodology</h2>
+      <div class="subtitle">Robust Score Integration Framework Combining Semantic & Behavioral Heuristics</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Retrieve, Score, and Rank Flow</h3>
+        <ul>
+          <li><strong>Base Score</strong>: Computes keyword match score (Layer 1) to build a coarse top-1500 heap.</li>
+          <li><strong>Semantic Score</strong>: Computes cosine similarity of the JD against candidate text profiles using quantized transformers.</li>
+          <li><strong>Experience Fit</strong>: Multiplies a Gaussian offset decay factor based on experience deviation from the target YOE band.</li>
+          <li><strong>Score Combination</strong>:
+            <br>
+            <span style="font-family: monospace; font-size: 11px; display: block; margin-top: 2mm; color: var(--accent);">
+              Final_Score = Cos_Sim * YOE_Decay * Trust_Multiplier
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Models & Mathematics Used</h3>
+        <ul>
+          <li><strong>Model</strong>: <code>all-MiniLM-L6-v2</code> loaded locally with network off, max seq length 64, and dynamic INT8 quantization.</li>
+          <li><strong>Geodistance</strong>: Haversine distance formula used to identify commuter hubs.</li>
+          <li><strong>Gaussian YOE Decay</strong>:
+            <br>
+            <span style="font-family: monospace; font-size: 11px; color: var(--accent);">
+              exp(-(YOE - Target)^2 / (2 * variance))
+            </span>
+          </li>
+          <li><strong>Deterministic Tie-Breaker</strong>: Sorts score-tied candidates alphabetically by <code>candidate_id</code>.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 4 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Explainability & Data Validation -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Explainability & Data Validation</h2>
+      <div class="subtitle">Preventing LLM Hallucinations & Filtering Malicious Activity</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Zero-Hallucination Explainability</h3>
+        <ul>
+          <li><strong>Deterministic Justification</strong>: Generated justifications are rule-based, pulling factual variables (exact YOE, current title, matched skills, location) directly from candidate profiles.</li>
+          <li><strong>Why this works</strong>: Avoids LLM fine-tuning or prompting for reasoning, which would exceed the 5-minute CPU runtime budget and introduce hallucinatory claims.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Data Validation & Spam Filtering</h3>
+        <ul>
+          <li><strong>13 Metadata Anomalies Checked</strong>: Evaluates signals like 0% interview completion rates, connection-farming, instant bot response times, and unverified contacts.</li>
+          <li><strong>Trust Modifiers</strong>: Smoothly scales the trust score down (from 1.0 to 0.01), pushing spam-bots and test-cheaters to the bottom of the rankings.</li>
+          <li><strong>Honeypot Excluders</strong>: Detects impossible chronologies (e.g. signup dates in the future) and excludes them instantly.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 5 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 6: End-to-End Workflow -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>End-to-End Workflow</h2>
+      <div class="subtitle">Sequential candidate processing pipeline with bounded vector memory layers</div>
+    </div>
+    
+    <div class="flow-container">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <h4>Streaming Input</h4>
+        <p>Memory-efficient streaming of 100,000 candidate records directly from JSONL.</p>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <h4>Layer 1 Filters</h4>
+        <p>NCR commuter hubs check, future date honeypots, IT services check. Top 1500 kept in min-heap.</p>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <h4>Layer 2 Embeddings</h4>
+        <p>Offline semantic similarity scoring on top 1,500 candidates via INT8 MiniLM transformer.</p>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <h4>Layer 3 & 4</h4>
+        <p>Behavioral trust scaling & deterministic reasoning generation. Tie-breaks resolved.</p>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 6 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 7: System Architecture -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>System Architecture</h2>
+      <div class="subtitle">Decoupled Modules Designed for Offline Sandboxed Environments</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Core Modules</h3>
+        <ul>
+          <li><strong><code>ranking_pipeline.py</code></strong>: The single core engine handling coarse filters, transformer vector representations, behavioral calibration, and reasoning.</li>
+          <li><strong><code>download_model.py</code></strong>: Automates fetching of offline weights during environment setup.</li>
+          <li><strong><code>check_pipeline_health.py</code></strong>: Complete diagnostic suite running checks on model files, cache files, and performance throughput.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reproduction & Hosting</h3>
+        <ul>
+          <li><strong>Local Model Weights</strong>: Pushed in <code>local_model/</code> to ensure the container can run with network disabled.</li>
+          <li><strong>Vector Caching</strong>: Employs <code>.embeddings_cache.pkl</code> to cache vector math, facilitating rapid pipeline execution.</li>
+          <li><strong>Hosted Sandbox App</strong>: Streamlit UI hosted on Streamlit Cloud allowing developers and organizers to test samples instantly.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 7 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 8: Results & Performance -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Results & Performance</h2>
+      <div class="subtitle">High Throughput and Tight Hardware Footprint Validated on 100K Candidate Pool</div>
+    </div>
+    
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-val">19.04<span>sec</span></div>
+        <div class="metric-label">Warm Execution</div>
+        <div class="metric-desc">Embedding vector caching enables extremely rapid execution for 100,000 candidates.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">568<span>MB</span></div>
+        <div class="metric-label">Memory Footprint</div>
+        <div class="metric-desc">Completely OOM-safe RAM bounds on a single CPU core, exceeding requirements.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">0<span>%</span></div>
+        <div class="metric-label">Honeypot Rate</div>
+        <div class="metric-desc">Successfully screened out all adversarial honeypots from the top 100 list.</div>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 8 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 9: Technologies Used -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Technologies Used</h2>
+      <div class="subtitle">Efficient, Lightweight Stack Selected for High CPU Performance</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>ML & Processing Layer</h3>
+        <ul>
+          <li><strong>PyTorch & Transformers</strong>: Core neural network inference libraries.</li>
+          <li><strong>SentenceTransformers (MiniLM-L6-v2)</strong>: Lightweight, fast model for semantic embedding matching on CPU.</li>
+          <li><strong>NumPy & Pandas</strong>: High-performance vector math, score calculation, and final CSV formatting.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Application & Testing Layer</h3>
+        <ul>
+          <li><strong>Streamlit</strong>: Framework for deploying the hosted interactive sandbox environment.</li>
+          <li><strong>Python Standard Library</strong>: Handles file streaming via <code>gzip</code>, <code>json</code>, and <code>hashlib</code> with zero overhead.</li>
+          <li><strong>psutil</strong>: Performance telemetry and memory usage tracking.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 9 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 10: Submission Assets -->
+  <div class="slide">
+    <div class="slide-header">
+      <h2>Submission Assets</h2>
+      <div class="subtitle">All required deliverables ready for Stage 3 validation</div>
+    </div>
+    
+    <div class="grid-2">
+      <div class="card">
+        <h3>Deliverables URL</h3>
+        <ul>
+          <li><strong>GitHub Repository</strong>: <br><a href="https://github.com/Harsha2134/Compiled-Minds" style="color: var(--accent); text-decoration: none;">https://github.com/Harsha2134/Compiled-Minds</a></li>
+          <li><strong>Hosted Sandbox URL</strong>: <br><a href="https://compiled-minds-redrob.streamlit.app/" style="color: var(--accent); text-decoration: none;">https://compiled-minds-redrob.streamlit.app/</a></li>
+          <li><strong>Final Submission CSV</strong>: <br><code>compiled_minds.csv</code> (satisfies all validator rules)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reproduce Command</h3>
+        <p style="font-size: 14px; margin-bottom: 4mm; color: var(--text-muted);">Organizers can run this single command to reproduce results:</p>
+        <pre style="background: rgba(0, 0, 0, 0.4); padding: 4mm; border-radius: 8px; font-family: monospace; font-size: 13px; color: var(--accent); border: 1px solid rgba(255, 255, 255, 0.05);">
+python ranking_pipeline.py \
+  --candidates ./candidates.jsonl \
+  --out ./submission.csv
+        </pre>
+      </div>
+    </div>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 10 of 11</div>
+    </div>
+  </div>
+
+  <!-- Slide 11: Thank You -->
+  <div class="slide slide-cover">
+    <div class="cover-tag">Compiled Minds</div>
+    <h1 class="cover-title">THANK YOU</h1>
+    <p class="cover-subtitle">Ready for the Stage 5 defend-your-work engineering review!</p>
+    
+    <div class="slide-footer">
+      <div class="logo-footer">COMPILED<span>MINDS</span></div>
+      <div>Slide 11 of 11</div>
+    </div>
+  </div>
+
+</body>
+</html>
